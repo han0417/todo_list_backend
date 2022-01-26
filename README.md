@@ -16,7 +16,7 @@
 * php artisan jwt:secret (if need it)
 * .env add param 'PAGE_LIMIT', type int
 
-## API
+## API & document
 
 * [POST]   /api/accounts        新增帳戶
 * [POST]   /api/login           登入取得jwt Token
@@ -28,12 +28,15 @@
 * [PUT]]   /api/todos/{todo_id} 更新 Todo
 * [DELETE] /api/todos/{todo_id} 軟刪除 Todo
 
+* Document: https://documenter.getpostman.com/view/11440549/UVe9TA4M
+
 ## Logic
 
 * 將Controller 邏輯拆分出Service & Repo
 * Service      負責寫業務邏輯
 * Repo         負責資料邏輯（Orm 查詢）
 * Controller   負責接收參數與驗證
+
 
 
 
