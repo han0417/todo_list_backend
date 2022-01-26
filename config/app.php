@@ -123,24 +123,7 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
-    'DOMAIN'         => env('DOMAIN'),
-    'LOCAL_TMP_PATH' => env('LOCAL_TMP_PATH'),
-    'AVOID_PATH'     => env('AVOID_PATH'),
-    'LOG_NAME'       => env('LOG_NAME'),
     'PAGE_LIMIT'     => env('PAGE_LIMIT'),
-
-    'GOOGLE_CLOUD_STORAGE_BUCKET' => env('GOOGLE_CLOUD_STORAGE_BUCKET'),
-    'GOOGLE_CLOUD_STORAGE_PREFIX' => env('GOOGLE_CLOUD_STORAGE_PREFIX'),
-
-    'FB_ACCESS_TOKEN'       => env('FB_ACCESS_TOKEN'),
-    'FB_VALIDATE_TOKEN_URL' => env('FB_VALIDATE_TOKEN_URL'),
-
-    'GOOGLE_VALIDATE_TOKEN_URL' => env('GOOGLE_VALIDATE_TOKEN_URL'),
-
-    'LINE_GET_TOKEN_URL' => env('LINE_GET_TOKEN_URL'),
-    'LINE_VERIFY_URL'    => env('LINE_VERIFY_URL'),
-    'LINE_REDIRECT_URL'  => env('LINE_REDIRECT_URL'),
-    'LINE_CLIENT_ID'     => env('LINE_CLIENT_ID'),
 
     /*
     |--------------------------------------------------------------------------

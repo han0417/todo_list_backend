@@ -24,8 +24,8 @@ class AdminStoreAccountService
     /**
      * verify user data
      * @param array $data [
-     *    @param string account
-     *    @param string password
+     *    @param string account  帳號
+     *    @param string password 密碼
      * ]
      *
      * @return array
@@ -51,12 +51,19 @@ class AdminStoreAccountService
         try {
             auth('admin')->logout();
         } catch (\Exception $e) {
-            $this->exception->error(20002);
+            $this->exception->error(20002, $e->getMessage());
         }
     }
 
     /**
-     * create account
+     * create user data
+     * @param array $data [
+     *    @param string account  帳號
+     *    @param string password 密碼
+     *    @param string name     用戶名稱
+     * ]
+     *
+     * @return void
      */
     public function createAccount(array $data)
     {
@@ -73,95 +80,6 @@ class AdminStoreAccountService
         } catch (\Exception $e) {
             DB::rollBack();
             $this->exception->error(20003, $e->getMessage());
-        }
-    }
-
-    /**
-     * get user list
-     * @param array $data
-     * @return object
-     */
-    public function getUserList(array $data)
-    {
-        $filter = [
-            'limit' => $data['limit'] ?? config('app.PAGE_LIMIT')
-        ];
-        return $this->userRepo->listByFilter($filter);
-    }
-
-    /**
-     * get user
-     * @param int $userId
-     * @return object
-     */
-    public function getUser(int $userId)
-    {
-        $filter = [
-            'id'    => $userId
-        ];
-        return $this->userRepo->listByFilter($filter);
-    }
-
-    /**
-     * create user
-     * @param array $data
-     * @return object
-     */
-    public function createUser(array $data)
-    {
-        $userData = [
-            'account'  => $data['account'],
-            'password' => $data['password'],
-            'name'     => $data['name'],
-            'phone'    => $data['phone'] ?? null,
-            'email'    => $data['email'] ?? null,
-        ];
-
-        DB::beginTransaction();
-        try {
-            $this->userRepo->create($userData);
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-            $this->exception->error(20003, $e->getMessage());
-        }
-    }
-
-    /**
-     * update user by id
-     * @param int $userId
-     */
-    public function updateUserById(array $data)
-    {
-        $userData = [
-            'name'     => $data['name'],
-            'phone'    => $data['phone'],
-            'email'    => $data['email'],
-        ];
-
-        DB::beginTransaction();
-        try {
-            $this->userRepo->updateById($data['id'], $userData);
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-            $this->exception->error(20004, $e->getMessage());
-        }
-    }
-
-    /**
-     * delete user by id
-     * @param int $id
-     */
-    public function deleteUserById(int $id)
-    {
-        DB::beginTransaction();
-        try {
-            $this->userRepo->deleteById($id);
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollBack();
-            $this->exception->error(20004, $e->getMessage());
         }
     }
 }

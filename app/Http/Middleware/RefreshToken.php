@@ -42,7 +42,6 @@ class RefreshToken extends BaseMiddleware
         // 判斷token是否在有效期內
         try {
             $id    = $this->auth->parseToken()->getPayload()->get('sub');
-            $this->authGuard($request, $guard);
             if (auth('admin')->byId($id)) {
                 // 增加store_id在request
                 return $next($request);
@@ -52,7 +51,6 @@ class RefreshToken extends BaseMiddleware
                 $sub      = $this->auth->manager()->getPayloadFactory()->buildClaimsCollection()->toPlainArray()['sub'];
                 $guard    = 'admin';
 
-                $this->authGuard($request, $guard);
                 // 重新整理使用者的 token
                 $token = $this->auth->parseToken()->refresh();
                 // 使用一次性登入以保證此次請求的成功
@@ -77,11 +75,5 @@ class RefreshToken extends BaseMiddleware
         $response->headers->set('Access-Control-Expose-Headers', 'Authorization');
 
         return $response;
-    }
-
-    protected function authGuard($request, $platform)
-    {
-        $url = $request->url();
-        !strpos($url, $platform) && $this->exception->error(901);
     }
 }
