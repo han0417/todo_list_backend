@@ -18,15 +18,22 @@
 
 ## API
 
-*[POST]   /api/accounts        新增帳戶
-*[POST]   /api/login           登入取得jwt Token
-*[POST]   /api/logout          登出 使Token失效
+* [POST]   /api/accounts        新增帳戶
+* [POST]   /api/login           登入取得jwt Token
+* [POST]   /api/logout          登出 使Token失效
 
-*[GET]    /api/todos           取得 該帳戶的 Todo 列表
-*[GET]    /api/todos/{todo_id} 取得該 Todo 資料
-*[POST]   /api/todos/          新增 Todo 
-*[PUT]]   /api/todos/{todo_id} 更新 Todo
-*[DELETE] /api/todos/{todo_id} 軟刪除 Todo
+* [GET]    /api/todos           取得 該帳戶的 Todo 列表
+* [GET]    /api/todos/{todo_id} 取得該 Todo 資料
+* [POST]   /api/todos/          新增 Todo 
+* [PUT]]   /api/todos/{todo_id} 更新 Todo
+* [DELETE] /api/todos/{todo_id} 軟刪除 Todo
+
+## Logic
+
+* 將Controller 邏輯拆分出Service & Repo
+* Service      負責寫業務邏輯
+* Repo         負責資料邏輯（Orm 查詢）
+* Controller   負責接收參數與驗證
 
 
 
