@@ -16,6 +16,16 @@
 * php artisan jwt:secret (if need it)
 * .env add param 'PAGE_LIMIT', type int
 
+## Test
+
+* php artisan test
+* 測試todo API CRUD
+
+## Seeder
+
+* php artisan db:seed
+* 建立admin帳號
+
 ## API & document
 
 * [POST]   /api/accounts        新增帳戶
