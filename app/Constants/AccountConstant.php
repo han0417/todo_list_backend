@@ -10,7 +10,7 @@ namespace App\Constants;
 class AccountConstant
 {
     const TEST_ACCOUNT = [
-        'account'  => 'test',
+        'account'  => 'admin',
         'password' => '123qwe'
     ];
 }

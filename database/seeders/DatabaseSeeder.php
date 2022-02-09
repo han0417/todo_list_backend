@@ -15,10 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('admin_store_accounts')->insert([
-            'name'    => 'admin',
-            'account' => 'admin',
-            'password' => Hash::make('123qwe'),
-        ]);
+        \App\Models\AdminStoreAccount::factory()->create();
     }
 }
