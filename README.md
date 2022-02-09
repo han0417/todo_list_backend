@@ -18,7 +18,7 @@
 
 ## Test
 
-* php artisan test
+* php artisan test --env=testing
 * 測試todo API CRUD
 
 ## Seeder
