@@ -19,7 +19,8 @@
 ## Test
 
 * php artisan test --env=testing
-* 測試todo API CRUD
+* todo Services 單元測試
+* todo CRUD API 功能測試
 
 ## Seeder
 
