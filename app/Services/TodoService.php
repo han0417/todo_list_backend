@@ -5,7 +5,6 @@ namespace App\Services;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\TodoRepository;
 use App\Exceptions\TodoException;
-use Carbon\Carbon;
 
 class TodoService
 {
@@ -71,14 +70,14 @@ class TodoService
      */
     public function create(array $data)
     {
-        $TodoData = [
+        $todoData = [
             'title'        => $data['title'],
             'checked'      => $data['checked'],
             'user_id'      => $data['user_id']
         ];
         DB::beginTransaction();
         try {
-            $this->todoRepo->create($TodoData);
+            $this->todoRepo->create($todoData);
             DB::commit();
         } catch (\Throwable $e) {
             DB::rollBack();
