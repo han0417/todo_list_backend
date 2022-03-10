@@ -1,12 +1,12 @@
 # Todo List Backend
 
 ## Environment
-* Laravel 8.83.2
-* PHP 7.4.28
+* Laravel 9.4.1
+* PHP 8.0.16
 * MariaDB 10.6.5
 
 ## Include
-* [JWT](https://github.com/tymondesigns/jwt-auth) for authentication
+* [JWT](https://github.com/PHP-Open-Source-Saver/jwt-auth) for authentication
 
 ## Initial
 
@@ -14,7 +14,7 @@
 * cp .env.example .env (if need it)
 * php artisan key:generate (if need it)
 * php artisan jwt:secret
-* .env add param 'PAGE_LIMIT', type int
+* .env add param 'PAGE_LIMIT' (if need it)
 
 ## Test
 
