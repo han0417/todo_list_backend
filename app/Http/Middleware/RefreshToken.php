@@ -3,16 +3,16 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
-use Tymon\JWTAuth\Exceptions\TokenExpiredException;
-use Tymon\JWTAuth\JWTAuth;
+use PHPOpenSourceSaver\JWTAuth\Exceptions\JWTException;
+use PHPOpenSourceSaver\JWTAuth\Http\Middleware\BaseMiddleware;
+use PHPOpenSourceSaver\JWTAuth\Exceptions\TokenExpiredException;
+use PHPOpenSourceSaver\JWTAuth\JWTAuth;
 
 use App\Exceptions\AuthException;
 use App\Constants\PlatformConstant;
 use Illuminate\Support\Facades\Hash;
 
-class RefreshToken extends BaseMiddleware
+class RefreshToken
 {
     protected $exception;
     protected $auth;
@@ -20,7 +20,7 @@ class RefreshToken extends BaseMiddleware
         AuthException $exception,
         JWTAuth $auth
     ) {
-        parent::__construct($auth);
+        $this->auth = $auth;
         $this->exception = $exception;
     }
     /**
@@ -33,9 +33,7 @@ class RefreshToken extends BaseMiddleware
     public function handle($request, Closure $next, $guard = null)
     {
         // 檢查此次請求中是否帶有 token，如果沒有則丟擲異常。
-        try {
-            $this->checkForToken($request);
-        } catch (\Throwable $e) {
+        if (!$this->auth->parser()->setRequest($request)->hasToken()){
             $this->exception->error(903);
         }
 
@@ -71,7 +69,7 @@ class RefreshToken extends BaseMiddleware
     protected function setAuthenticationHeader($response, $token = null)
     {
         $token = $token ?: $this->auth->parseToken()->refresh();
-        $response->headers->set('Authorization', 'Bearer '.$token);
+        $response->headers->set('Authorization', 'Bearer ' . $token);
         $response->headers->set('Access-Control-Expose-Headers', 'Authorization');
 
         return $response;
